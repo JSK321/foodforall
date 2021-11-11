@@ -36,18 +36,18 @@ module.exports = function(sequelize, DataTypes) {
         availability: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
-        }
+        },
     })
     
     FoodBank.associate = function(models) {
         // add associations here
         // Orders will only ever belong to a Customer or a FoodBanks and if either are deleted the order should be
-        // FoodBank.hasOne(models.Order, {
-        //     onDelete: "cascade"
-        // });
-        // FoodBank.hasOne(models.Pantry, {
-        //     onDelete: "cascade"
-        // });
+        FoodBank.hasOne(models.Order, {
+            onDelete: "cascade"
+        });
+        FoodBank.hasOne(models.Pantry, {
+            onDelete: "cascade"
+        });
     };
     
     return FoodBank;

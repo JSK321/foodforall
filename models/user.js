@@ -1,9 +1,6 @@
 const bcrypt = require("bcrypt")
-const { customAlphabet } = require('nanoid')
+const moment = require('moment');
 
-const nanoid = customAlphabet('1234567890abcdef', 8)
-
-console.log(nanoid)
 module.exports = function (sequelize, DataTypes) {
     // Store user values for interaction with other models
     const User = sequelize.define("User", {
@@ -35,14 +32,21 @@ module.exports = function (sequelize, DataTypes) {
         id: {
             type: DataTypes.STRING,
             primaryKey: true
-        }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            get() {
+                return moment(this.getDataValue('createdAt')).format('lll');
+            }
+        },
     })
     User.associate = function (models) {
         // add associations here
         // Orders will only ever belong to a Customer or a FoodBank and if either are deleted the order should be
-        // User.hasMany(models.Order, {
-        //     onDelete: "cascade"
-        // });
+        User.hasMany(models.Order, {
+            onDelete: "cascade"
+        });
     };
 
     User.beforeCreate(function (user) {
