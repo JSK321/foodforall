@@ -10,11 +10,11 @@ module.exports = function(sequelize, DataTypes) {
                 return moment(this.getDataValue('createdAt')).format('lll');
             }
         },
-        received: {
+        orderReceived: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        orderUpdatedAt:{
+        orderUpdated:{
             type: DataTypes.DATE,
             allowNull: false,
             get() {
