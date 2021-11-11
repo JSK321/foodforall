@@ -33,10 +33,6 @@ module.exports = function(sequelize, DataTypes) {
         longitude: {
             type: DataTypes.DOUBLE(10,7)
         },
-        availability: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true
-        },
     })
     
     FoodBank.associate = function(models) {

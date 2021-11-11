@@ -3,6 +3,10 @@ const moment = require('moment');
 module.exports = function(sequelize, DataTypes) {
     // Store Customer values for interaction with other models
     const Order = sequelize.define("Order", {
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         orderTime: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -20,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
             get() {
                 return moment(this.getDataValue('updatedAt')).format('lll');
             }
-        }
+        },
     })
     Order.associate = function(models) {
         // add associations here
