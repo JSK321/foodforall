@@ -3,10 +3,6 @@ const moment = require('moment');
 module.exports = function(sequelize, DataTypes) {
     // Store Customer values for interaction with other models
     const Order = sequelize.define("Order", {
-        orderDate: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         orderTime: {
             type: DataTypes.DATE,
             allowNull: false,
